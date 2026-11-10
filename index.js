@@ -1,7 +1,10 @@
+import dotenv from "dotenv";
 import express from 'express';
 import path from 'path';
 import { MongoClient, ServerApiVersion } from 'mongodb';
 import { fileURLToPath } from 'url';
+
+dotenv.config();
 
 const app = express();
 const port = process.env.PORT || 5000;
@@ -17,8 +20,8 @@ app.use('/sign-up', express.static(path.join(directoryName, 'public')));
 
 
 // ---------- MongoDB (Stable API v1) ----------
-const mongoDBUserName = "example";
-const mongoDBPassword = "example"
+const mongoDBUserName = process.env.MONGO_DB_USER;
+const mongoDBPassword = process.env.MONGO_DB_PASS;
 
 const uri = `mongodb+srv://${encodeURIComponent(mongoDBUserName)}:${encodeURIComponent(mongoDBPassword)}@cluster0.shcxnwl.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`;
 
